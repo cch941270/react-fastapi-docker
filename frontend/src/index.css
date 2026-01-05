@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+#root {
+  max-width: 500px;
+  margin-inline: auto;
+}
