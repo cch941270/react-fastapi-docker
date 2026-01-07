@@ -5,33 +5,33 @@ WORKDIR /usr/local/app
 COPY backend/requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY backend/app ./app
-COPY backend/.env ./.env
-COPY backend/static/images ./static/images
+RUN addgroup -S -g 1000 app; \
+    adduser -S -D -H -u 1000 -G app app;
+USER app:app
 
-RUN addgroup -S appgroup && adduser -S -D -H -u 1000 -G appgroup appuser
-RUN chown -R appuser:appgroup ./static/images
+COPY --chown=app:app backend/app ./app
+COPY --chown=app:app backend/.env ./.env
+COPY --chown=app:app backend/static/images ./static/images
 
 # fastapi backend
 FROM backend-base AS backend-dev
 
-COPY backend/alembic.ini ./
-COPY backend/alembic ./alembic
+COPY --chown=app:app backend/alembic.ini ./
+COPY --chown=app:app backend/alembic ./alembic
 
 EXPOSE 8000
-
-USER appuser
 
 # fastapi test
 FROM backend-base AS backend-test
 
-COPY backend/test ./test
-COPY backend/pyproject.toml ./
+COPY --chown=app:app backend/test ./test
+COPY --chown=app:app backend/pyproject.toml ./
 
-RUN mkdir .pytest_cache
-RUN chown -R appuser:appgroup .pytest_cache
+USER root
+RUN mkdir .pytest_cache; \
+    chown -R app:app .pytest_cache;
 
-USER appuser
+USER app:app
 CMD ["python", "-m", "pytest"]
 
 # react

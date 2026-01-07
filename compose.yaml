@@ -32,12 +32,21 @@ services:
       - fastapi_data:/usr/local/app/static/images
     ports:
       - "8000:8000"
-    command: ash -c "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000"
+    command: ash -c "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
     develop:
       watch:
-        - path: backend
-          action: sync
+        - action: sync
+          path: ./backend
           target: /usr/local/app
+          ignore:
+            - test/
+            - pyproject.toml
+            - uv.lock
+        - action: sync+restart
+          path: ./backend/pyproject.toml
+          target: /user/local/app/pyproject.toml
+        - action: rebuild
+          path: ./backend/uv.lock
   database:
     image: "postgres:17.7"
     volumes:
