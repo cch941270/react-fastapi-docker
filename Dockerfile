@@ -1,23 +1,38 @@
-# Fastapi
-FROM python:3.14-alpine AS backend-dev
+# fastapi base
+FROM python:3.14-alpine AS backend-base
 WORKDIR /usr/local/app
 
 COPY backend/requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY backend/alembic.ini ./
-COPY backend/alembic ./alembic
 COPY backend/app ./app
-COPY backend/test ./test
 COPY backend/.env ./.env
 COPY backend/static/images ./static/images
 
+RUN addgroup -S appgroup && adduser -S -D -H -u 1000 -G appgroup appuser
+RUN chown -R appuser:appgroup ./static/images
+
+# fastapi backend
+FROM backend-base AS backend-dev
+
+COPY backend/alembic.ini ./
+COPY backend/alembic ./alembic
+
 EXPOSE 8000
 
-RUN addgroup -S appgroup && adduser -S -D -H -u 1000 -G appgroup appuser
-RUN chown -R appuser ./static/images
 USER appuser
 
+# fastapi test
+FROM backend-base AS backend-test
+
+COPY backend/test ./test
+COPY backend/pyproject.toml ./
+
+RUN mkdir .pytest_cache
+RUN chown -R appuser:appgroup .pytest_cache
+
+USER appuser
+CMD ["python", "-m", "pytest"]
 
 # react
 FROM node:24-alpine AS frontend-dev

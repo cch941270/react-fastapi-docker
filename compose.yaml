@@ -1,4 +1,12 @@
 services:
+  test:
+    build:
+      context: .
+      target: backend-test
+    depends_on:
+      database:
+        condition: service_healthy
+        restart: true
   frontend:
     build:
       context: .
