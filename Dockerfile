@@ -38,13 +38,14 @@ CMD ["python", "-m", "pytest"]
 FROM node:24-alpine AS frontend-dev
 WORKDIR /app
 
-COPY frontend/. .
-COPY frontend/.env ./.env
-RUN npm install
-RUN chown -R node:node .
+USER node
+COPY --chown=node:node frontend/. .
+
+USER root
+RUN npm install; \
+    chown -R node:node node_modules
 
 EXPOSE 5173
 
 USER node
-
 CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "5173"]

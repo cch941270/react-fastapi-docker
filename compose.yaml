@@ -11,15 +11,15 @@ services:
     build:
       context: .
       target: frontend-dev
-    depends_on:
-      - backend
     ports:
       - "5173:5173"
     develop:
       watch:
         - action: sync
-          path: frontend
-          target: /app
+          path: ./frontend/src
+          target: /app/src
+        - action: rebuild
+          path: ./frontend/package-lock.json
   backend:
     build:
       context: .
