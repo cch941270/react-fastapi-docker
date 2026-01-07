@@ -26,6 +26,7 @@ WORKDIR /app
 COPY frontend/. .
 COPY frontend/.env ./.env
 RUN npm install
+RUN chown -R node:node .
 
 EXPOSE 5173
 

@@ -7,7 +7,6 @@ services:
       - backend
     ports:
       - "5173:5173"
-    user: "${UID}:${GID}"
     develop:
       watch:
         - action: sync
