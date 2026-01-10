@@ -78,14 +78,14 @@ async def another_test_user(get_test_session: AsyncSession):
 
 @pytest_asyncio.fixture(scope="function", autouse=True)
 async def mock_discussion_thread(get_test_session: AsyncSession, get_test_user):
-    mock_discussion_thread = DiscussionThread(user_id=get_test_user.id, title="testtitle1", content="testcontent1")
+    mock_discussion_thread = DiscussionThread(user_id=get_test_user.id, title="testtitle1", content="testcontent1", image_path=None)
     get_test_session.add(mock_discussion_thread)
     await get_test_session.commit()
     yield mock_discussion_thread
 
 @pytest_asyncio.fixture(scope="function", autouse=True)
 async def another_mock_discussion_threads(get_test_session: AsyncSession, another_test_user):
-    another_mock_discussion_threads = DiscussionThread(user_id=another_test_user.id, title="testtitle2", content="testcontent2")
+    another_mock_discussion_threads = DiscussionThread(user_id=another_test_user.id, title="testtitle2", content="testcontent2", image_path=None)
     get_test_session.add(another_mock_discussion_threads)
     await get_test_session.commit()
     yield another_mock_discussion_threads
