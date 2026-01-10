@@ -35,5 +35,5 @@ dist-ssr
 *.sw?
 
 .env
-static/images/*
-!static/images/.gitkeep
+backend/static/images/*
+!backend/static/images/.gitkeep
