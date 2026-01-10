@@ -18,6 +18,7 @@ FROM backend-base AS backend-dev
 
 COPY --chown=app:app backend/alembic.ini ./
 COPY --chown=app:app backend/alembic ./alembic
+COPY --chown=app:app backend/seeds ./seeds
 
 EXPOSE 8000
 

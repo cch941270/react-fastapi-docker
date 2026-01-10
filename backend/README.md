@@ -29,3 +29,7 @@ ALTER DATABASE fastapi_demo_project OWNER TO fastapi_demo_project_user;
 8. `python -m pytest` to run tests
 9. `uvicorn app.main:app --reload --log-level info` to start development server
 10. visit localhost:8000/docs to try APIs
+
+bithound.svg, bower2.svg, browserslist.svg, cakephp.svg, python.svg
+Author: vscode-icons
+Source: svgrepo.com
