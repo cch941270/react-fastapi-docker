@@ -1,4 +1,4 @@
-import userCircle from "../assets/user-circle.svg";
+import UserCircle from "../assets/user-circle-dark.svg?react";
 import { Link } from "react-router";
 import { useNavigate } from "react-router";
 
@@ -12,20 +12,20 @@ export default function Header() {
   }
 
   return (
-    <header className="sticky top-0 h-12 flex justify-between items-center bg-amber-100">
-      {tokenData ? (
-        <button className="cursor-pointer w-[40px]" onClick={logout}>
-          Logout
-        </button>
-      ) : (
-        <span className="w-[40px]"></span>
-      )}
+    <header className="h-12 sticky top-0 flex justify-between items-center bg-gray-700 px-2">
       <Link to="/">
-        <span>FastAPI demo frontend</span>
+        <span>Demo</span>
       </Link>
-      <Link to={tokenData ? "/myThreads" : "/login"}>
-        <img className="w-[40px]" src={userCircle} />
-      </Link>
+      <span className="flex">
+        {tokenData && (
+          <button className="cursor-pointer" onClick={logout}>
+            Logout
+          </button>
+        )}
+        <Link to={tokenData ? "/myThreads" : "/login"}>
+          <UserCircle width={40} height={40} stroke={"white"} />
+        </Link>
+      </span>
     </header>
   );
 }
