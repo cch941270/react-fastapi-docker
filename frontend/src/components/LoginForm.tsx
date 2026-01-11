@@ -31,19 +31,19 @@ export default function LoginForm() {
   return (
     <>
       <form
-        className="form flex flex-col items-center pt-[20px] mt-[5px] bg-lime-50"
+        className="flex flex-col items-center mt-8"
         action={getToken}
       >
-        <label className="my-[5px]">
+        <label className="my-1">
           Username:
           <input type="text" name="username" required />
         </label>
 
-        <label className="my-[5px]">
+        <label className="my-1">
           Password:
           <input type="password" name="password" required />
         </label>
-        <button className="cursor-pointer">Login</button>
+        <button className="cursor-pointer my-2">Login</button>
       </form>
     </>
   );
