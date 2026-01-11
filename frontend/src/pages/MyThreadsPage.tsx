@@ -39,15 +39,14 @@ export default function MyThreadsPage() {
   return (
     <>
       <Header />
-      <h3 className="h-10 flex justify-center items-center mt-[5px] bg-lime-100">
-        My Threads
-      </h3>
-      <Link to="/threads/create">
-        <button className="h-10 w-full flex justify-center items-center mt-[5px] rounded-lg bg-emerald-100 cursor-pointer">
+      <Link to="/threads/create" className="block m-2">
+        <div className="rounded-lg bg-emerald-200 cursor-pointer text-black p-2 text-center">
           New Thread
-        </button>
+        </div>
       </Link>
-      {discussionThreadElements}
+      <div className="lg:grid lg:grid-cols-2">
+        {discussionThreadElements}
+      </div>
     </>
   );
 }
