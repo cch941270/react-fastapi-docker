@@ -96,6 +96,4 @@ async def main():
     await seed_dummy_data()
 
 if __name__ == "__main__":
-    proceed = input("Seeding will destory all exist data, proceed? (y/N)")
-    if proceed == "y":
-        asyncio.run(main())
+    asyncio.run(main())
