@@ -27,20 +27,20 @@ export default function CreateDiscussionThreadForm() {
   }
 
   return (
-    <form className="mt-[5px] bg-lime-50" action={createDiscussionThread}>
-      <div className="flex my-[5px]">
+    <form className="p-2" action={createDiscussionThread}>
+      <div className="flex my-1">
         <label htmlFor="title">Title:</label>
-        <input type="text" name="title" className="w-full ml-[5px]" required />
+        <input type="text" name="title" className="w-full ml-1 border border-emerald-200" required />
       </div>
-      <div className="flex flex-col my-[5px]">
+      <div className="flex flex-col my-1">
         <label htmlFor="content">Content:</label>
-        <textarea name="content" rows={5} required />
+        <textarea name="content" rows={5} required className="border border-emerald-200" />
       </div>
-      <div className="flex flex-col my-[5px]">
+      <div className="flex flex-col my-1">
         <label htmlFor="image">Image(Optional):</label>
         <input type="file" name="image" className="border border-emerald-200" />
       </div>
-      <button className="my-[5px]">Submit</button>
+      <button className="my-1 cursor-pointer">Submit</button>
     </form>
   );
 }
