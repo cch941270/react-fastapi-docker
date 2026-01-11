@@ -36,7 +36,7 @@ export default function HomePage() {
   return (
     <div>
       <Header />
-      <div className="h-10 flex items-center mt-[5px] bg-lime-100">
+      <div className="h-10 bg-gray-500 p-2">
         <input
           type="text"
           name="searchTitle"
@@ -46,7 +46,9 @@ export default function HomePage() {
           className="w-full"
         />
       </div>
-      {discussionThreadElements}
+      <div className="lg:grid lg:grid-cols-2">
+        {discussionThreadElements}
+      </div>
     </div>
   );
 }

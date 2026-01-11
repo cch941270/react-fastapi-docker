@@ -16,36 +16,38 @@ export default function DiscussionThread({
   const createdAt = new Date(discussionThread.createdAt).toLocaleString();
 
   return (
-    <>
-      <article className="grid grid-cols-10 grid-rows-4 h-[152px] p-[5px] mt-[5px] bg-lime-50">
-        <div className="col-span-3 row-span-4">
-          <img className="w-[142px]" src={imageSrc} />
+    <article className="m-2 p-2 bg-white rounded-xl">
+      <div className="md:flex">
+        <div className="md:shrink-0">
+          <img className="h-48 w-full object-fit" src={imageSrc} />
         </div>
-        <div className="col-start-4 col-span-7 row-span-1 flex justify-between">
-          <span>{discussionThread.author}</span>
-          <span>{createdAt}</span>
+        <div className="text-black">
+          <div className="flex justify-between">
+            <span>{discussionThread.author}</span>
+            <span className="italic">{createdAt}</span>
+          </div>
+          <div className="text-lg text-indigo-700">
+            {discussionThread.title}
+          </div>
+          <div className="h-40 overflow-scroll">
+            {discussionThread.content}
+          </div>
         </div>
-        <div className="col-start-4 col-span-7 row-start-2 row-span-1">
-          {discussionThread.title}
-        </div>
-        <div className="col-start-4 col-span-7 row-start-3 row-span-2 overflow-scroll">
-          {discussionThread.content}
-        </div>
-      </article>
+      </div>
       {isMyThread && (
-        <div className="flex justify-evenly bg-lime-50">
-          <Link to={`/threads/${discussionThread.id}/update`}>
-            <button className="border border-emerald-200 rounded-md p-[5px] bg-emerald-100 cursor-pointer">
+        <div className="flex gap-2 mt-2">
+          <Link to={`/threads/${discussionThread.id}/update`} className="w-full">
+            <button className="w-full rounded-md p-2 bg-emerald-400 cursor-pointer text-black">
               Update Content
             </button>
           </Link>
-          <Link to={`/threads/${discussionThread.id}/delete`}>
-            <button className="border border-red-200 rounded-md p-[5px] bg-red-500 cursor-pointer">
+          <Link to={`/threads/${discussionThread.id}/delete`} className="w-full">
+            <button className="w-full rounded-md p-2 bg-red-500 cursor-pointer">
               Delete Thread
             </button>
           </Link>
         </div>
       )}
-    </>
+    </article>
   );
 }
