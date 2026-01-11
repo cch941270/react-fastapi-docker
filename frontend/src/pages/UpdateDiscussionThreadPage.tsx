@@ -31,12 +31,12 @@ export default function UpdateDiscussionThreadPage() {
   return (
     <>
       <Header />
-      <form className="mt-[5px] bg-lime-50" action={updateDiscussionThread}>
-        <div className="flex flex-col my-[5px]">
+      <form className="p-2" action={updateDiscussionThread}>
+        <div className="flex flex-col my-1">
           <label htmlFor="content">Content:</label>
-          <textarea name="content" rows={5} required />
+          <textarea name="content" rows={5} required className="border border-emerald-200" />
         </div>
-        <button className="my-[5px]">Submit</button>
+        <button className="my-1 cursor-pointer">Submit</button>
       </form>
     </>
   );
