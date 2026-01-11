@@ -22,24 +22,24 @@ export default function CreateAccountForm() {
   return (
     <>
       <form
-        className="form flex flex-col items-center py-[20px] mt-[5px] bg-lime-50"
+        className="flex flex-col items-center mt-8"
         action={createAccount}
       >
-        <label className="my-[5px]">
+        <label className="my-1">
           Username:
           <input type="text" name="username" required />
         </label>
 
-        <label className="my-[5px]">
+        <label className="my-1">
           Password:
           <input type="password" name="password" required />
         </label>
 
-        <label className="my-[5px]">
+        <label className="my-1">
           Confirm Password:
         <input type="password" name="confirm_password" required />
         </label>
-        <button className="cursor-pointer">Create Account</button>
+        <button className="cursor-pointer my-2">Create Account</button>
       </form>
     </>
   );
