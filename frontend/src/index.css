@@ -16,4 +16,5 @@ select {
 #root {
   background-color: rgb(3, 7, 18);
   color: white;
+  min-height: 100vh;
 }
