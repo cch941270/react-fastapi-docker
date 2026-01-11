@@ -33,12 +33,14 @@ export default function DeleteDiscussionThreadPage() {
   return (
     <>
       <Header />
-      <button
-        onClick={deleteDiscussionThread}
-        className="w-full h-10 my-[5px] bg-red-500 cursor-pointer"
-      >
-        Confirm Delete
-      </button>
+      <div className="flex justify-center">
+        <button
+          onClick={deleteDiscussionThread}
+          className="w-3xs p-2 my-2 bg-red-500 rounded-md cursor-pointer"
+        >
+          Confirm Delete
+        </button>
+      </div>
     </>
   );
 }
